@@ -1,6 +1,6 @@
 <?php 
 
-class Usuario {
+class Produtos {
 
 	private $id;
 	private $nome;
@@ -50,6 +50,27 @@ class Usuario {
 
 		}
 	}
+
+	//LISTAR CONTEÚDO DO BANCO DE DADOS:
+	public static function getList(){
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM produtos ORDER BY nome");
+
+	}
+
+	public static function search($nome) {
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM produtos WHERE nome LIKE :SEARCH ORDER BY nome", array(
+			':SEARCH'=>"%".$nome."%"
+		));
+
+	}
+
+	
 
 	public function __toString(){
 
